@@ -1,10 +1,12 @@
 // The Swift Programming Language
 // https://docs.swift.org/swift-book
 
-import Foundation
 import Dispatch
+import Foundation
 
-print("Open Trivia")
+let console = Console()
+
+console.welcome()
 
 // NB: Replace the `DispatchQueue.main.asyncAfter` with your code.
 // Once the program is done, call `exit(EXIT_SUCCESS)` to exit the program.
