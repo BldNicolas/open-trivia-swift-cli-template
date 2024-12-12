@@ -4,8 +4,8 @@ public class Console {
     let questionRepository = QuestionRepository()
 
     func welcome() {
-        print("Bienvenue dans trivia !")
-        self.showQuestions()
+        print("Welcome in Trivia!")
+        showQuestions()
     }
 
     func showQuestions() {
