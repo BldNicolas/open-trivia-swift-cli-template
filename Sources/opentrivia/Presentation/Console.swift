@@ -19,8 +19,8 @@ public class Console {
 
                     showAnswers(answers: question.answers)
 
-                    let answer = getUserAnswer()
-                    if answer == question.correct_answer {
+                    let userAnswer = getUserAnswer(answers: question.answers)
+                    if userAnswer == question.correct_answer {
                         print("\nCorrect answer!")
                     } else {
                         print("\nIncorrect answer!\nThe correct answer was: \(question.correct_answer)")
@@ -58,13 +58,16 @@ public class Console {
         print("\n" + String(repeating: "=", count: 50))
     }
 
-    func getUserAnswer() -> String {
-        print("\nWhat is your answer?")
+    func getUserAnswer(answers: [String]) -> String {
+        print("\nWhat is your answer? (Type the number of the answer)")
         while true {
-            if let answer = readLine(), !answer.isEmpty {
-                return answer
+            if let input = readLine(), 
+            let selectedAnswer = Int(input), 
+            selectedAnswer > 0, 
+            selectedAnswer <= answers.count {
+                return answers[selectedAnswer - 1]
             } else {
-                print("\nPlease enter a correct value!")
+                print("\nInvalid input! Please enter a number between 1 and \(answers.count).")
             }
         }
     }
