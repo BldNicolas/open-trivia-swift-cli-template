@@ -1,3 +1,5 @@
+import Foundation
+
 public class Console {
     let questionRepository = QuestionRepository()
 
@@ -17,12 +19,21 @@ public class Console {
 
                     showAnswers(answers: question.answers)
 
+                    let answer = getUserAnswer()
+                    if answer == question.correct_answer {
+                        print("\nCorrect answer!")
+                    } else {
+                        print("\nIncorrect answer!\nThe correct answer was: \(question.correct_answer)")
+                    }
+
                     showSeparation()
                     
                     questionNumber += 1
                 }
+                exit(EXIT_SUCCESS)
             } catch {
                 print("❌ Failed to fetch questions: \(error)")
+                exit(EXIT_FAILURE)
             }
         }
     }
@@ -45,5 +56,16 @@ public class Console {
 
     func showSeparation() {
         print("\n" + String(repeating: "=", count: 50))
+    }
+
+    func getUserAnswer() -> String {
+        print("\nWhat is your answer?")
+        while true {
+            if let answer = readLine(), !answer.isEmpty {
+                return answer
+            } else {
+                print("\nPlease enter a correct value!")
+            }
+        }
     }
 }
